@@ -1,0 +1,40 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.app-content {
+  padding-top: 6rem; /* Adjust based on your header height */
+  padding-bottom: 3rem; /* Adjust based on your footer height */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form, .search-filter {
+  margin-bottom: 2rem;
+}
+
+form div, .search-filter div {
+  margin-bottom: 1rem;
+}
+
+form label, .search-filter input, .search-filter select {
+  display: block;
+}
+
+button {
+  background-color: #E60012;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.5 ease;
+}
+
+button:hover {
+  background-color: #AC000D;
+}
