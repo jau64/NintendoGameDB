@@ -1,62 +1,50 @@
 import React, { useState } from 'react';
 
-function GameForm({ setGames }) {
+function GameForm({ addGame }) {
   const [formData, setFormData] = useState({
     title: '',
     platform: '',
     genre: '',
-    completeInBox: false,
+    isComplete: false
   });
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: type === 'checkbox' ? checked : value,
-    }));
+    setFormData({
+      ...formData,
+      [name]: type === 'checkbox' ? checked : value
+    });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newGame = { ...formData, id: Date.now() };
-    setGames((prevGames) => [...prevGames, newGame]);
+    addGame(formData);
     setFormData({
       title: '',
       platform: '',
       genre: '',
-      completeInBox: false,
+      isComplete: false
     });
   };
 
   return (
-    <form onSubmit={handleSubmit} className="game-form">
+    <form onSubmit={handleSubmit}>
       <div>
-        <label>
-          Title:
-          <input type="text" name="title" value={formData.title} onChange={handleChange} />
-        </label>
+        <label>Title:</label>
+        <input type="text" name="title" value={formData.title} onChange={handleChange} required />
       </div>
       <div>
-        <label>
-          Platform:
-          <input type="text" name="platform" value={formData.platform} onChange={handleChange} />
-        </label>
+        <label>Platform:</label>
+        <input type="text" name="platform" value={formData.platform} onChange={handleChange} required />
       </div>
       <div>
-        <label>
-          Genre:
-          <input type="text" name="genre" value={formData.genre} onChange={handleChange} />
-        </label>
+        <label>Genre:</label>
+        <input type="text" name="genre" value={formData.genre} onChange={handleChange} required />
       </div>
       <div>
         <label>
           Complete in Box:
-          <input
-            type="checkbox"
-            name="completeInBox"
-            checked={formData.completeInBox}
-            onChange={handleChange}
-          />
+          <input type="checkbox" name="isComplete" checked={formData.isComplete} onChange={handleChange} />
         </label>
       </div>
       <button type="submit">Add Game</button>
